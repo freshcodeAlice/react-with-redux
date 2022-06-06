@@ -1,44 +1,54 @@
 import './App.css';
-import { useReducer } from 'react';
-
-function reducer (state, action) {
-  switch (action.type) {
-    case 'ADD_ONE': {
-      return {};
-    }
-    case 'SUB_ONE': {
-      return {};
-    }
-  }
-  return state;
-}
+import { connect } from 'react-redux';
+import { increment, decrement, changeStep } from './actions/actionCreators';
 
 const App = props => {
-  const [state, dispatch] = useReducer(reducer, {
-    count: 0
-  });
+  const { count, step } = props;
 
-  const increment = () => {
-    dispatch({
-      type: 'ADD_ONE',
-      count: state.count + 1
-    });
+  const inc = () => {
+    props.increment();
   };
 
-  const decrement = () => {
-    dispatch({
-      type: 'SUB_ONE',
-      count: state.count - 1
-    });
+  const dec = () => {
+    props.decrement();
+  };
+
+  const handlerInput = ({ target: { value } }) => {
+    props.changeStep(Number(value));
   };
 
   return (
     <div className='App'>
-      <h1>{state.count}</h1>
-      <button onClick={increment}>+</button>
-      <button onClick={decrement}>-</button>
+      <h1>{count}</h1>
+      <input type='number' value={step} onChange={handlerInput} />
+      <button onClick={inc}>+</button>
+      <button onClick={dec}>-</button>
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    count: state.count,
+    step: state.step
+  };
+};
+
+const mapDispatchToProps = {
+  increment,
+  decrement,
+  changeStep
+};
+
+/*
+const mapDispatchToProps = () => {
+return {
+ increment: () => dispatch(increment),
+decrement: () => dispatch(decrement)
+changeStep: () => dispatch(changeStep)
+}
+};
+
+*/
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
