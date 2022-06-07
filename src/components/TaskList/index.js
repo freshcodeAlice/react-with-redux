@@ -39,11 +39,7 @@ const TaskList = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    tasks: state.tasks
-  };
-};
+const mapStateToProps = ({ task: { tasks } }) => ({ tasks });
 
 const mapDispatchToProps = {
   updateTaskAction,

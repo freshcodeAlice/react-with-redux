@@ -18,12 +18,10 @@ const Counter = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    count: state.count,
-    step: state.step
-  };
-};
+const mapStateToProps = ({ counter: { count, step } }) => ({
+  count,
+  step
+});
 
 const mapDispatchToProps = {
   increment,

@@ -5,7 +5,7 @@ import { createTaskAction } from '../../actions/actionCreators';
 
 const TaskForm = props => {
   const onSubmit = (values, formikBag) => {
-    props.createTaskAction(values);
+    props.createTask(values);
   };
   return (
     <Formik
@@ -23,8 +23,14 @@ const TaskForm = props => {
     </Formik>
   );
 };
-const mapDispatchToProps = {
-  createTaskAction
+// const mapDispatchToProps = {
+//   createTaskAction
+// };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createTask: values => dispatch(createTaskAction(values))
+  };
 };
 
 export default connect(null, mapDispatchToProps)(TaskForm);
