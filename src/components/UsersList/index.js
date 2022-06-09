@@ -6,7 +6,7 @@ const UsersList = props => {
   const { users, isFetching, error } = props;
 
   useEffect(() => {
-    props.getUsersRequestAction({});
+    props.getUsersRequestAction({ limit: 5, offset: 0 });
   }, []);
 
   const loadMore = () => {
