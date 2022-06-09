@@ -19,7 +19,7 @@ const UsersList = props => {
     <div>
       {isFetching && <p>Loading....</p>}
       {error && <p>Some error</p>}
-      <button>Load More Users</button>
+      <button onClick={loadMore}>Load More Users</button>
       {users
         ? users.map(u => {
             return <li key={u.id}>{JSON.stringify(u)}</li>;
