@@ -1,8 +1,17 @@
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { getUsersRequestAction } from '../../actions/actionCreators';
 
 const UsersList = props => {
   const { users, isFetching, error } = props;
-  console.log(props);
+
+  useEffect(() => {
+    props.getUsersRequestAction({
+      limit: 5,
+      offset: 0
+    });
+  }, []);
+
   return (
     <div>
       {isFetching && <p>Loading....</p>}
@@ -18,4 +27,4 @@ const UsersList = props => {
 
 const mapStateToProps = ({ user }) => user;
 
-export default connect(mapStateToProps)(UsersList);
+export default connect(mapStateToProps, { getUsersRequestAction })(UsersList);

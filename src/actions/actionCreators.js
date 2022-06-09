@@ -65,3 +65,31 @@ export const createUserErrorAction = error => {
     error
   };
 };
+
+////////
+
+// http://localhost:3000/users?limit=5&offset=10
+
+export const getUsersRequestAction = ({ limit, offset }) => {
+  return {
+    type: ACTION_TYPES.GET_USERS_REQUEST,
+    payload: {
+      limit,
+      offset
+    }
+  };
+};
+
+export const getUsersSuccessAction = users => {
+  return {
+    type: ACTION_TYPES.GET_USERS_SUCCESS,
+    payload: { users }
+  };
+};
+
+export const getUsersErrorAction = error => {
+  return {
+    type: ACTION_TYPES.GET_USERS_ERROR,
+    payload: { error }
+  };
+};

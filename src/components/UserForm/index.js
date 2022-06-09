@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 const UserForm = props => {
   const onSubmitForm = (values, formikBag) => {
-    values.birthday = new Date();
     props.createUserRequestAction(values);
   };
 
